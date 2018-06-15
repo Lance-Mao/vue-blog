@@ -1,0 +1,46 @@
+.loginWrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
+    font-size: 18px;
+
+    .hd {
+        text-align: center;
+        width: 300px;
+      }
+      .hd h2 {
+        font-weight: 400;
+        color: #20A0FF;
+      }
+      .hd p {
+        font-size: 15px;
+        color: #1f2f3d;
+      }
+      .bd {
+        width: 300px;
+      }
+      .bd .submitBtn {
+        width: 100%;
+      }
+      .bd .el-form-item:last-child {
+        margin-bottom: 10px;
+      }
+      .ft {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        width: 300px;
+      }
+      .ft a {
+        font-size: 14px;
+        text-decoration: none;
+        color: #20A0FF;
+      }
+  }
+  
