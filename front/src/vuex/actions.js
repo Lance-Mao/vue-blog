@@ -6,6 +6,7 @@ export default {
   login({ commit }, data) {
     axios.post('/api/login', data)
       .then(response => {
+        console.log(response,'返回结果')
         commit(types.USER_LOGIN, response.data)
       })
       .catch(error => {
@@ -17,10 +18,11 @@ export default {
     console.log(12346)
     axios.post('/api/register', data)
       .then(response => {
-        // commit(types.USER_REGISTER, response.data)
+        console.log(response)
+        commit(types.USER_REGISTER, response.data)
       })
       .catch(error => {
-        // commit(types.USER_REGISTER_FAILURE, error)
+        commit(types.USER_REGISTER_FAILURE, error)
       })
   }
 }

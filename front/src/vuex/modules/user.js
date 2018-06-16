@@ -2,16 +2,15 @@ import { USER_LOGIN, USER_LOGIN_FAILURE, USER_LOGOUT, USER_REGISTER, USER_REGIST
 
 const state = {
     username: '',
-    email: '',
     createdAt: '',
-    isLogin: false
+    isLogin: false,
+    isRegister: false
 }
 
 
 const mutations = {
     [USER_LOGIN] (state, data) {
         state.username = data.username
-        state.email = data.email
         state.createdAt = data.createdAt
         state.isLogin = true
     },
@@ -24,6 +23,12 @@ const mutations = {
         state.createdAt = ''
         state.isLogin = false
     },
+    [USER_REGISTER] (state, data) {
+        state.isRegister = true
+    },
+    [USER_REGISTER_FAILURE] (state, data) {
+        state.isRegister = false
+    }
 }
 
 export default {

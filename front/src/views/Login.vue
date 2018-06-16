@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import router from "../router"
 export default {
   name: "login",
   data() {
@@ -53,13 +54,27 @@ export default {
           };
           // doLogin(this, data)
           this.$store.dispatch("login", data);
-          let isLogin = this.$store.state;
-          console.log(isLogin);
-          // if (isLogin){
-          //   alert("登录成功");
-          // } else {
-          //   alert("登录失败");
-          // }
+          setTimeout(() => {
+            let isLogin = this.$store.state.user.isLogin;
+            if (isLogin) {
+              sessionStorage.setItem(
+                "username",
+                this.$store.state.user.username
+              );
+              this.loginForm.pwd = "";
+              router.push("/");
+              this.$message({
+                message: "登录成功!",
+                type: "success"
+              });
+            } else {
+              this.$message({
+                message: "用户名或密码错误！",
+                type: "warning"
+              });
+              return false;
+            }
+          }, 400);
         } else {
           return false;
         }
@@ -70,5 +85,5 @@ export default {
 </script>
 
 <style lang="scss">
-  @import url(".././assets/login.scss");
+@import url(".././assets/login.scss");
 </style>

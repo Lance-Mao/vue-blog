@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import router from "../router"
 export default {
   name: "register",
   data() {
@@ -112,6 +113,22 @@ export default {
           console.log(12345);
           // doRegister(this, data)
           this.$store.dispatch("register", data);
+          setTimeout(() => {
+            let isRegister = this.$store.state.user.isRegister;
+            if (isRegister) {
+              router.push("/login");
+              this.$message({
+                message: "注册成功!",
+                type: "success"
+              });
+            } else {
+              this.$message({
+                message: "注册失败！",
+                type: "warning"
+              });
+              return false;
+            }
+          }, 400);
         } else {
           return false;
         }
