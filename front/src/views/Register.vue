@@ -14,14 +14,6 @@
         <el-form-item prop="checkPwd">
           <el-input v-model="registerForm.checkPwd" placeholder="请再次输入密码" type="password"></el-input>
         </el-form-item>
-        <!-- <el-form-item prop="email">
-          <el-input v-model="registerForm.email" placeholder="请输入接收验证码的邮箱"></el-input>
-        </el-form-item>
-        <el-form-item prop="captcha">
-          <el-input v-model="registerForm.captcha" placeholder="请输入验证码">
-            <el-button slot="append" @click='getCaptcha'>{{ captchaMsg }}</el-button>
-          </el-input>
-        </el-form-item> -->
         <el-form-item>
           <el-button type="primary" @click="submitForm('registerForm')" class="submitBtn">立即注册</el-button>
         </el-form-item>
@@ -75,29 +67,13 @@ export default {
         userName: "",
         pwd: "",
         checkPwd: ""
-        // email: '',
-        // captcha: ''
       },
       registerRule: {
         userName: [{ validator: validateUser, trigger: "blur" }],
         pwd: [{ validator: validatePwd, trigger: "blur" }],
         checkPwd: [{ validator: validateCheckPwd, trigger: "blur" }],
-        email: [
-          { required: true, message: "请输入邮箱地址", trigger: "blur" },
-          {
-            type: "email",
-            message: "请输入正确的邮箱地址",
-            trigger: "blur,change"
-          }
-        ],
-        captcha: [{ required: true, message: "请输入验证码", trigger: "blur" }]
       }
     };
-  },
-  computed: {
-    captchaMsg() {
-      // return this.$store.getters.getCaptchaMsg
-    }
   },
   methods: {
     submitForm(formName) {
@@ -107,11 +83,8 @@ export default {
           let data = {
             username: this.registerForm.userName,
             password: this.registerForm.pwd
-            // 'email': this.registerForm.email,
-            // 'captcha': this.registerForm.captcha
           };
           console.log(12345);
-          // doRegister(this, data)
           this.$store.dispatch("register", data);
           setTimeout(() => {
             let isRegister = this.$store.state.user.isRegister;
@@ -134,18 +107,6 @@ export default {
         }
       });
     },
-    getCaptcha() {
-      this.$refs.registerForm.validateField("email", vaild => {
-        if (!vaild) {
-          let data = {
-            email: this.registerForm.email
-          };
-          // sendCaptcha(this, data)
-        } else {
-          return false;
-        }
-      });
-    }
   }
 };
 </script>
