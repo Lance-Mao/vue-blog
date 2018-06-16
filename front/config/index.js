@@ -13,7 +13,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://mlwohmo.leanapp.cn/api/',
+        target: 'http://mlwblog.leanapp.cn/api/',
         changeOrigin: true,
         pathRewrite: {
           '/api': '/'

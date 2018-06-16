@@ -48,8 +48,8 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           var data = {
-            usr: this.loginForm.userName,
-            pwd: this.loginForm.pwd
+            username: this.loginForm.userName,
+            password: this.loginForm.pwd
           };
           // doLogin(this, data)
           this.$store.dispatch("login", data);

@@ -14,14 +14,14 @@
         <el-form-item prop="checkPwd">
           <el-input v-model="registerForm.checkPwd" placeholder="请再次输入密码" type="password"></el-input>
         </el-form-item>
-        <el-form-item prop="email">
+        <!-- <el-form-item prop="email">
           <el-input v-model="registerForm.email" placeholder="请输入接收验证码的邮箱"></el-input>
         </el-form-item>
         <el-form-item prop="captcha">
           <el-input v-model="registerForm.captcha" placeholder="请输入验证码">
             <el-button slot="append" @click='getCaptcha'>{{ captchaMsg }}</el-button>
           </el-input>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item>
           <el-button type="primary" @click="submitForm('registerForm')" class="submitBtn">立即注册</el-button>
         </el-form-item>
@@ -34,108 +34,106 @@
 </template>
 
 <script>
-  export default {
-    name: 'register',
-    data () {
-      var validateUser = (rule, value, cb) => {
-        var pattern = /^[\w\u4e00-\u9fa5]{3,10}$/g
-        if (value === '') {
-          cb(new Error('请输入用户名'))
-        } else if (!pattern.test(value)) {
-          cb(new Error('请输入3-10个字母/汉字/数字/下划线'))
-        } else {
-          cb()
+export default {
+  name: "register",
+  data() {
+    var validateUser = (rule, value, cb) => {
+      var pattern = /^[\w\u4e00-\u9fa5]{3,10}$/g;
+      if (value === "") {
+        cb(new Error("请输入用户名"));
+      } else if (!pattern.test(value)) {
+        cb(new Error("请输入3-10个字母/汉字/数字/下划线"));
+      } else {
+        cb();
+      }
+    };
+    var validatePwd = (rule, value, cb) => {
+      var pattern = /^\S{3,20}$/g;
+      if (value === "") {
+        cb(new Error("请输入密码"));
+      } else if (!pattern.test(value)) {
+        cb(new Error("请输入3-20个非空白字符"));
+      } else {
+        if (this.registerForm.checkPwd !== "") {
+          this.$refs.registerForm.validateField("checkPwd");
         }
+        cb();
       }
-      var validatePwd = (rule, value, cb) => {
-        var pattern = /^\S{3,20}$/g
-        if (value === '') {
-          cb(new Error('请输入密码'))
-        } else if (!pattern.test(value)) {
-          cb(new Error('请输入3-20个非空白字符'))
-        } else {
-          if (this.registerForm.checkPwd !== '') {
-            this.$refs.registerForm.validateField('checkPwd')
-          }
-          cb()
-        }
+    };
+    var validateCheckPwd = (rule, value, cb) => {
+      if (value === "") {
+        cb(new Error("请再次输入密码"));
+      } else if (value !== this.registerForm.pwd) {
+        cb(new Error("两次输入密码不一致!"));
+      } else {
+        cb();
       }
-      var validateCheckPwd = (rule, value, cb) => {
-        if (value === '') {
-          cb(new Error('请再次输入密码'))
-        } else if (value !== this.registerForm.pwd) {
-          cb(new Error('两次输入密码不一致!'))
-        } else {
-          cb()
-        }
-      }
-      return {
-        registerForm: {
-          userName: '',
-          pwd: '',
-          checkPwd: '',
-          email: '',
-          captcha: ''
-        },
-        registerRule: {
-          userName: [
-            { validator: validateUser, trigger: 'blur' }
-          ],
-          pwd: [
-            { validator: validatePwd, trigger: 'blur' }
-          ],
-          checkPwd: [
-            { validator: validateCheckPwd, trigger: 'blur' }
-          ],
-          email: [
-            { required: true, message: '请输入邮箱地址', trigger: 'blur' },
-            { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur,change' }
-          ],
-          captcha: [
-            { required: true, message: '请输入验证码', trigger: 'blur' }
-          ]
-        }
-      }
-    },
-    computed: {
-      captchaMsg () {
-        // return this.$store.getters.getCaptchaMsg
-      }
-    },
-    methods: {
-      submitForm (formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            let data = {
-              'usr': this.registerForm.userName,
-              'pwd': this.registerForm.pwd,
-              'email': this.registerForm.email,
-              'captcha': this.registerForm.captcha
-            }
-            // doRegister(this, data)
-            this.$store.dispatch('register', data);
-          } else {
-            return false
-          }
-        })
+    };
+    return {
+      registerForm: {
+        userName: "",
+        pwd: "",
+        checkPwd: ""
+        // email: '',
+        // captcha: ''
       },
-      getCaptcha () {
-        this.$refs.registerForm.validateField('email', (vaild) => {
-          if (!vaild) {
-            let data = {
-              email: this.registerForm.email
-            }
-            // sendCaptcha(this, data)
-          } else {
-            return false
+      registerRule: {
+        userName: [{ validator: validateUser, trigger: "blur" }],
+        pwd: [{ validator: validatePwd, trigger: "blur" }],
+        checkPwd: [{ validator: validateCheckPwd, trigger: "blur" }],
+        email: [
+          { required: true, message: "请输入邮箱地址", trigger: "blur" },
+          {
+            type: "email",
+            message: "请输入正确的邮箱地址",
+            trigger: "blur,change"
           }
-        })
+        ],
+        captcha: [{ required: true, message: "请输入验证码", trigger: "blur" }]
       }
+    };
+  },
+  computed: {
+    captchaMsg() {
+      // return this.$store.getters.getCaptchaMsg
+    }
+  },
+  methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          console.log(this.registerForm, "注册");
+          let data = {
+            username: this.registerForm.userName,
+            password: this.registerForm.pwd
+            // 'email': this.registerForm.email,
+            // 'captcha': this.registerForm.captcha
+          };
+          console.log(12345);
+          // doRegister(this, data)
+          this.$store.dispatch("register", data);
+        } else {
+          return false;
+        }
+      });
+    },
+    getCaptcha() {
+      this.$refs.registerForm.validateField("email", vaild => {
+        if (!vaild) {
+          let data = {
+            email: this.registerForm.email
+          };
+          // sendCaptcha(this, data)
+        } else {
+          return false;
+        }
+      });
     }
   }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  @import url("./../assets/login.scss");
+@import url("./../assets/login.scss");
 </style>
