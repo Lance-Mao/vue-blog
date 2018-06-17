@@ -2,7 +2,7 @@
     <div>
         <el-tabs :tab-position="tabPosition" v-model="activeName" type="border-card">
             <el-tab-pane name="0" label="首页">
-                <mArticle />
+                <mArticle articleList="articleList" />
             </el-tab-pane>
             <el-tab-pane name="1" label="文章分类"></el-tab-pane>
             <el-tab-pane name="2" label="写文章"></el-tab-pane>
@@ -26,8 +26,11 @@ export default {
   },
   watch: {
     activeName: function(val) {
-      val === "2" ? router.push("/post") : ""
+      val === "2" ? router.push("/post") : "";
     }
+  },
+  created() {
+    this.$store.dispatch("getArticleList");
   }
 };
 </script>

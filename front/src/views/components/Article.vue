@@ -1,40 +1,79 @@
 <template>
-    <el-card class="box-card">
-  <div slot="header" class="clearfix">
-    <span>卡片名称</span>
-    <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
-  </div>
-  <div v-for="o in 4" :key="o" class="text item">
-    {{'列表内容 ' + o }}
-  </div>
-</el-card>
+
+<el-row>
+  <el-col class="article" :span="10" v-for="article in articleList" :key="article.id">
+    <el-card shadow="hover">
+      <img src="../../assets/background.jpeg" class="image">
+      <div>
+        <h1>{{article.title}}</h1>
+        <div class="bottom clearfix">
+          <time class="time">发布日期：{{ article.createdAt }}</time>
+          <el-button type="text" class="button">操作按钮</el-button>
+        </div>
+      </div>
+    </el-card>
+  </el-col>
+</el-row>
 </template>
 
 <script>
 export default {
-    
-}
+  data() {
+    return {
+      currentDate: new Date()
+    };
+  },
+  computed: {
+    articleList() {
+      return this.$store.state.postList.articleList;
+    }
+  },
+};
 </script>
 
-<style>
-  .text {
-    font-size: 14px;
-  }
+<style lang="scss">
+.el-main {
+  line-height: 20px;
+}
+.article {
+  position: relative;
+  margin: 20px;
+}
 
-  .item {
-    margin-bottom: 18px;
-  }
+.article:hover {
+  position: relative;
+  margin: 20px 24px;
+  box-shadow: 20px 0 50px 0 lightblue;
+}
+.time {
+  font-size: 13px;
+  color: #999;
+  position: absolute;
+  left: 10px;
+}
 
-  .clearfix:before,
-  .clearfix:after {
-    display: table;
-    content: "";
-  }
-  .clearfix:after {
-    clear: both
-  }
+.bottom {
+  margin-top: 13px;
+  line-height: 12px;
+}
 
-  .box-card {
-    width: 480px;
-  }
+.button {
+  padding: 0;
+  float: right;
+}
+
+.image {
+  width: 100%;
+  display: block;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+
+.clearfix:after {
+  clear: both;
+}
 </style>

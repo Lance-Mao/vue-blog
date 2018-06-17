@@ -37,5 +37,17 @@ export default {
         console.log("错误")
         console.log(error)
       })
+  },
+  //获取文章列表
+  getArticleList({ commit }) {
+    console.log(123456)
+    axios.get('/api/getArticleList')
+      .then(response => {
+        console.log(response.data)
+        commit(types.ARTICLE_GET, response.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 }
