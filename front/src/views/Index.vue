@@ -4,9 +4,6 @@
             <vHeader />
         </el-header>
         <el-container>
-            <el-aside width="200px">
-                <vAside />
-            </el-aside>
             <el-container>
             <el-main>
                 <vMain />
@@ -24,7 +21,6 @@ export default {
     components: {
         'vHeader': () => import('./components/Header.vue'),
         'vFooter': () => import('./components/Footer.vue'),
-        'vAside': () => import('./components/Aside.vue'),
         'vMain': () => import('./components/Main.vue')
     }
 };
