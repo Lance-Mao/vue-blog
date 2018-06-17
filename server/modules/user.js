@@ -28,12 +28,9 @@ UserModel.login = async (req, res) => {
 }
 
 UserModel.register = async (req, res) => {
-    console.log("进入注册接口")
-    console.log(req.body)
     let user = new AV.User();
     user.setUsername(req.body.username)
     user.setPassword(req.body.password)
-    console.log(user)
     user.signUp().then(function (register) {
         console.log(register)
         res.send(register);

@@ -6,7 +6,7 @@ export default {
   login({ commit }, data) {
     axios.post('/api/login', data)
       .then(response => {
-        console.log(response,'返回结果')
+        console.log(response, '返回结果')
         commit(types.USER_LOGIN, response.data)
       })
       .catch(error => {
@@ -23,6 +23,19 @@ export default {
       })
       .catch(error => {
         commit(types.USER_REGISTER_FAILURE, error)
+      })
+  },
+  //发布文章
+  submitArticle({ commit }, data) {
+    console.log(data)
+    axios.put('/api/submitArticle', data)
+      .then(response => {
+        console.log(response.data)
+        commit(types.ARTICLE_POST, response.data)
+      })
+      .catch(error => {
+        console.log("错误")
+        console.log(error)
       })
   }
 }

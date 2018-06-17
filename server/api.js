@@ -7,9 +7,13 @@ const router = require('express').Router();
 
 // 添加路由模块
 const user = require('./modules/user');
+const article = require('./modules/article')
 
 // User
 router.post('/login', user.login);
 router.post('/register', user.register);
+
+//Article
+router.put('/submitArticle', article.submitArticle)
 
 module.exports = router;

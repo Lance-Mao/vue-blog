@@ -51,7 +51,8 @@
     data() {
       return {
         title: '',
-        article: ''
+        article: '',
+        author: this.$store.state.user
       }
     },
     computed: {
@@ -92,15 +93,15 @@
           "title": this.title,
           "content": this.article,
           "abstract": this.article.slice(0, 100),
-          "author": this.user.username
+          "author": this.author.username
         }
         console.log(_postData,'文章数据')
-        // this.$store.dispatch('submitArticle', _postData)
+        this.$store.dispatch('submitArticle', _postData)
   
         this.title = ''
         this.content = ''
   
-        // router.push('/')
+        router.push('/')
 
         this.$message({
             message: '发布成功!',
