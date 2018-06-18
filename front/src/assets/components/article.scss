@@ -1,0 +1,39 @@
+.a-header {
+    min-height: 80px;
+    @media screen and (max-width: 1200px) {
+      height: 45vh;
+    }
+    @media screen and (max-width: 800px) {
+      height: 30vh;
+    }
+    .main-nav {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: inherit;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
+    }
+  }
+  
+  .article-wrapper {
+    // width: 95%;
+    max-width: 1210px;
+    margin: 4rem auto;
+    padding:0 1rem;
+    .title {
+      text-align: center;
+      color: #2E2E2E;
+      font-size: 3.2rem;
+      font-weight: bold;
+    }
+    .create {
+      color: #9EABB3;
+      line-height: 2.2rem;
+      font-size: 1.3rem;
+      text-transform: uppercase;
+    }
+    .content {
+      margin: 5rem 0;
+      font-size: 1.2rem;
+    }
+  }

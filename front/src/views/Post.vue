@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import pic from "../utils/pictures.js"
+import pic from "../utils/pictures.js";
 import marked from "marked";
 import Prism from "prismjs";
 import "prismjs/themes/prism.css";
@@ -103,8 +103,9 @@ export default {
       this.title = "";
       this.content = "";
 
-      router.push("/");
-
+      setTimeout(() => {
+        router.push("/");
+      }, 400);
       this.$message({
         message: "发布成功!",
         type: "success"

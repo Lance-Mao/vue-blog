@@ -16,5 +16,7 @@ router.post('/register', user.register);
 //Article
 router.put('/submitArticle', article.submitArticle)
 router.get('/getArticleList', article.getArticleList)
+router.get('/getArticleById/:id', article.getArticleById)
+
 
 module.exports = router;

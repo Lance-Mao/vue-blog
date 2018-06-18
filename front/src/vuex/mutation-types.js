@@ -10,4 +10,7 @@ export const ARTICLE_GET = "ARTICLE_GET"
 export const ARTICLE_GET_FAILURE = "ARTICLE_GET_FAILURE"
 export const ARTICLE_POST = "ARTICLE_POST"
 
+//articleDetails
+export const ARTICLE_LOADING = "ARTICLE_LOADING"
+
 

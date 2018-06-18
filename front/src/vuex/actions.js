@@ -44,9 +44,18 @@ export default {
     console.log(123456)
     axios.get('/api/getArticleList')
       .then(response => {
-        console.log(response.data)
         commit(types.ARTICLE_GET, response.data)
-        console.log(response.data.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  },
+  //根据id获取指定文章列表
+  getArticleById({ commit }, id) {
+    axios.get('/api/getArticleById/' + id)
+      .then(response => {
+        console.log(response.data)
+        commit(types.ARTICLE_LOADING, response.data)
       })
       .catch(error => {
         console.log(error)

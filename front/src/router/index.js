@@ -5,6 +5,7 @@ import Login from '@/views/Login'
 import Index from '@/views/Index'
 import Register from '@/views/Register'
 import Post from '@/views/Post'
+import ArticleDetails from '@/views/ArticleDetails'
 
 Vue.use(Router)
 
@@ -30,6 +31,11 @@ export default new Router({
       path: '/post',
       name: 'Post',
       component: Post
+    }
+    ,{
+      path: '/articleDetails',
+      name: 'ArticleDetails',
+      component: ArticleDetails
     }
   ]
 })

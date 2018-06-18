@@ -92,7 +92,7 @@ PostModel.getArticleList = async (req, res) => {
                 arr.push(result)
             }
 
-            console.log(arr,'数据')
+            console.log(arr, '数据')
             let final_result = {};
             final_result.page = page;
             final_result.data = arr;
@@ -102,6 +102,35 @@ PostModel.getArticleList = async (req, res) => {
         }
     } catch (err) {
         console.error(err)
+    }
+}
+
+PostModel.getArticleById = async (req, res) => {
+    const id = req.params.id
+
+    const queryArticle = (id) => {
+        const query = new AV.Query('ArticleList')
+        return query.get(id).then(function (object) {
+            return object
+        })
+    }
+
+    try {
+        const data = await queryArticle(id)
+
+        let result = {}
+        if (data) {
+            result.objectId = data.get('objectId')
+            result.title = data.get('title')
+            result.content = data.get('content')
+            result.author = data.get('author')
+            result.createdAt = data.get('createdAt').Format("yyyy-MM-dd hh:mm:ss")
+            res.send(result)
+        } else {
+            throw new Error('article is not found!')
+        }
+    } catch (error) {
+        console.log(error)
     }
 }
 
