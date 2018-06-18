@@ -28,38 +28,25 @@ export default {
 
 
 <style>
-.el-header,
+.el-header {
+    background: url(".././assets/image/topBackImage.jpg");
+    min-height: 250px;
+}
 .el-footer {
-  background-color: #b3c0d1;
+  background-color: #000000;
   color: #333;
   text-align: center;
   line-height: 60px;
 }
 
-.el-aside {
-  background-color: #d3dce6;
-  color: #333;
-  text-align: center;
-  line-height: 200px;
-}
-
 .el-main {
-  background-color: #e9eef3;
+  background-color: #617472;
   color: #333;
   text-align: center;
-  line-height: 160px;
+  padding: 0px;
 }
 
 body > .el-container {
   margin-bottom: 40px;
-}
-
-.el-container:nth-child(5) .el-aside,
-.el-container:nth-child(6) .el-aside {
-  line-height: 260px;
-}
-
-.el-container:nth-child(7) .el-aside {
-  line-height: 320px;
 }
 </style>

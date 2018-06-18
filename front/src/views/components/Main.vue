@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main">
         <el-tabs :tab-position="tabPosition" v-model="activeName" type="border-card">
           <el-tab-pane name="0" label="首页"> <mArticle /> </el-tab-pane>
             <el-tab-pane name="1" label="文章分类"></el-tab-pane>
@@ -37,6 +37,7 @@ export default {
 .index {
   position: relative;
 }
+
 </style>
 
 

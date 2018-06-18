@@ -1,19 +1,21 @@
 <template>
-
-<el-row>
-  <el-col class="article" :span="10" v-for="article in articleList" :key="article.objectId" @click.native="showArticleDetails(article.objectId)">
-      <el-card shadow="hover">
-        <img v-bind:src="article.showPic!==null ? article.showPic[2] : `../assets/background.jpeg`"  class="image">
-        <div>
-          <h1>{{article.title}}</h1>
-          <div class="bottom clearfix">
-            <time class="time">发布日期：{{ article.createdAt }}</time>
-            <el-button type="text" class="button">作者：{{ article.author }}</el-button>
-          </div>
-        </div>
-      </el-card>
-  </el-col>
-</el-row>
+  <div>
+    <el-button class="goTop" type="success" icon="el-icon-arrow-up" @click.native="goTop()" circle></el-button>
+    <el-row>
+      <el-col class="article" :span="10" v-for="article in articleList" :key="article.objectId" @click.native="showArticleDetails(article.objectId)">
+          <el-card shadow="hover">
+            <img v-bind:src="article.showPic!==null ? article.showPic[2] : `https://upload-images.jianshu.io/upload_images/5207977-2b69acc5a1786ded.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240`"  class="image">
+            <div>
+              <h1>{{article.title}}</h1>
+              <div class="bottom clearfix">
+                <time class="time">发布日期：{{ article.createdAt }}</time>
+                <el-button type="text" class="button">作者：{{ article.author }}</el-button>
+              </div>
+            </div>
+          </el-card>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script>
@@ -30,21 +32,37 @@ export default {
     }
   },
   methods: {
-    showArticleDetails(id){
-      this.$store.dispatch("getArticleById", id)
+    showArticleDetails(id) {
+      this.$store.dispatch("getArticleById", id);
       router.push("/articleDetails");
+    },
+    goTop() {
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
     }
   }
 };
 </script>
 
 <style lang="scss">
+.el-row {
+  width: 100%;
+  padding: 20x;
+}
+.el-tabs {
+  background-color: rgb(255, 255, 255);
+}
 .el-main {
   line-height: 20px;
 }
 .article {
   position: relative;
   margin: 20px;
+}
+
+.goTop {
+    position: fixed;
+    top: 600px;
+    right: 10px;
 }
 
 .article:hover {

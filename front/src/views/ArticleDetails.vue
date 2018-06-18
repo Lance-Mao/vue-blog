@@ -1,8 +1,7 @@
 <template lang="html">
 <div>
-
-         <el-button class="fixed" type="info"  @click.native="goHome()" plain>返回首页</el-button>
-         <el-button class="goTop" type="success" icon="el-icon-arrow-up" @click.native="goTop()" circle></el-button>
+    <el-button class="fixed" type="info"  @click.native="goHome()" plain>返回首页</el-button>
+    <el-button class="goTop" type="success" icon="el-icon-arrow-up" @click.native="goTop()" circle></el-button>
     <div class="article-wrapper">
       <div id="title" class="title" v-text="articleDetails.title"></div>
       <div class="create">{{articleDetails.createdAt}}</div>
