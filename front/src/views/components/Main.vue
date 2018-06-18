@@ -2,7 +2,7 @@
     <div>
         <el-tabs :tab-position="tabPosition" v-model="activeName" type="border-card">
             <el-tab-pane name="0" label="首页">
-                <mArticle articleList="articleList" />
+                <mArticle />
             </el-tab-pane>
             <el-tab-pane name="1" label="文章分类"></el-tab-pane>
             <el-tab-pane name="2" label="写文章"></el-tab-pane>

@@ -20,14 +20,14 @@
 export default {
   data() {
     return {
-      currentDate: new Date()
+      currentDate: new Date(),
     };
   },
   computed: {
     articleList() {
       return this.$store.state.postList.articleList;
     }
-  },
+  }
 };
 </script>
 

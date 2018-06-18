@@ -39,86 +39,88 @@
 </template>
 
 <script>
-  import marked from 'marked'
-  import Prism from 'prismjs'
-  import 'prismjs/themes/prism.css'
-  import router from '../router'
-  marked.setOptions({
-    highlight: (code) => Prism.highlight(code, Prism.languages.javascript)
-  })
-  
-  export default {
-    data() {
-      return {
-        title: '',
-        article: '',
-        author: this.$store.state.user
-      }
-    },
-    computed: {
-      user() {
-        return this.$store.state.user.username
-      },
-      content() {
-        let _content = this.article
-        marked(_content, (err, content) => {
-          if (!err) {
-            _content = content
-          }
-        })
-        return _content
-      },
-      words() {
-        const reg = /(\w)|[\u4e00-\u9fa5]/g
-        if (this.article) return this.article.match(reg).length
-        return 0
-      },
-      isLogin () {
-        let flag = sessionStorage.getItem('username')
-        let flag02 = this.$store.state.user.isLogin
-        return !!(flag && flag02)
-      }  
-    },
-    created () {
-        this.alertWarn('当前只有登录用户可以发布文章');
-    },
-    methods: {
-      submit() {
-        if (!this.title.trim() || !this.article.trim()) {
-          this.alertWarn('标题或文章不可为空！');
-          return
-        }
-   
-        const _postData = {
-          "title": this.title,
-          "content": this.article,
-          "abstract": this.article.slice(0, 100),
-          "author": this.author.username
-        }
-        console.log(_postData,'文章数据')
-        this.$store.dispatch('submitArticle', _postData)
-  
-        this.title = ''
-        this.content = ''
-  
-        router.push('/')
+import pic from "../utils/pictures.js"
+import marked from "marked";
+import Prism from "prismjs";
+import "prismjs/themes/prism.css";
+import router from "../router";
+marked.setOptions({
+  highlight: code => Prism.highlight(code, Prism.languages.javascript)
+});
 
-        this.$message({
-            message: '发布成功!',
-            type: 'success'
-        });
-      },
-      alertWarn(msg) {
-        this.$message({
-          message: msg,
-          type: 'warning'
-        });
+export default {
+  data() {
+    return {
+      title: "",
+      article: "",
+      author: this.$store.state.user
+    };
+  },
+  computed: {
+    user() {
+      return this.$store.state.user.username;
+    },
+    content() {
+      let _content = this.article;
+      marked(_content, (err, content) => {
+        if (!err) {
+          _content = content;
+        }
+      });
+      return _content;
+    },
+    words() {
+      const reg = /(\w)|[\u4e00-\u9fa5]/g;
+      if (this.article) return this.article.match(reg).length;
+      return 0;
+    },
+    isLogin() {
+      let flag = sessionStorage.getItem("username");
+      let flag02 = this.$store.state.user.isLogin;
+      return !!(flag && flag02);
+    }
+  },
+  created() {
+    this.alertWarn("当前只有登录用户可以发布文章");
+  },
+  methods: {
+    submit() {
+      if (!this.title.trim() || !this.article.trim()) {
+        this.alertWarn("标题或文章不可为空！");
+        return;
       }
+
+      const _postData = {
+        title: this.title,
+        content: this.article,
+        abstract: this.article.slice(0, 100),
+        author: this.author.username,
+        showPic: pic.getPic(this.article.toString())
+      };
+      console.log(_postData, "文章数据");
+      this.$store.dispatch("submitArticle", _postData);
+
+      this.title = "";
+      this.content = "";
+
+      router.push("/");
+
+      this.$message({
+        message: "发布成功!",
+        type: "success"
+      });
+    },
+    alertWarn(msg) {
+      this.$message({
+        message: msg,
+        type: "warning"
+      });
     }
   }
+};
 </script>
 
 <style lang="scss">
-  @import '../../node_modules/github-markdown-css/github-markdown.css';
-  @import '../assets/components/post.scss';
+@import "../../node_modules/github-markdown-css/github-markdown.css";
+@import "../assets/components/post.scss";
 </style>

@@ -32,6 +32,7 @@ export default {
       .then(response => {
         console.log(response.data)
         commit(types.ARTICLE_POST, response.data)
+        console.log(response.data)
       })
       .catch(error => {
         console.log("错误")
@@ -45,6 +46,7 @@ export default {
       .then(response => {
         console.log(response.data)
         commit(types.ARTICLE_GET, response.data)
+        console.log(response.data.data)
       })
       .catch(error => {
         console.log(error)

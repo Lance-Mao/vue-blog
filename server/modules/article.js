@@ -39,18 +39,22 @@ PostModel.submitArticle = async (req, res) => {
         title: req.body.title,
         content: req.body.content,
         abstract: req.body.abstract,
-        author: req.body.author
+        author: req.body.author,
+        showPic: req.body.showPic
     }
 
     if (!_post.title.trim() || !_post.content.trim()) {
         res.status(500).send('昵称和内容不可为空')
     }
 
+    console.log(_post)
+
     let myPost = new articleList();
     myPost.set('title', _post.title);
     myPost.set('content', _post.content);
     myPost.set('abstract', _post.abstract);
     myPost.set('author', _post.author);
+    myPost.set('showPic', _post.showPic);
 
     myPost.save().then(function (p) {
         console.log('objectId is ' + p.id);
@@ -62,16 +66,14 @@ PostModel.submitArticle = async (req, res) => {
 }
 
 PostModel.getArticleList = async (req, res) => {
-    console.log("进入方法")
     const page = req.params.page || 1
 
     const queryTenContent = (page) => {
-        console.log(123456)
         const query = new AV.Query('ArticleList') // 创建查询实例
         query.descending('createdAt') // 创建时间->降序查询
         query.skip((page - 1) * 10) // 跳过指定项
         query.limit(10) // 限制返回项数量
-        return query.find();
+        return query.find()
     }
 
     try {
@@ -86,8 +88,11 @@ PostModel.getArticleList = async (req, res) => {
                 result.abstract = item.get('abstract')
                 result.author = item.get('author')
                 result.createdAt = item.get('createdAt').Format("yyyy-MM-dd hh:mm:ss")
+                result.showPic = item.get('showPic')
                 arr.push(result)
             }
+
+            console.log(arr,'数据')
             let final_result = {};
             final_result.page = page;
             final_result.data = arr;
