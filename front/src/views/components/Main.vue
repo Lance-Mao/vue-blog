@@ -4,7 +4,7 @@
           <el-tab-pane name="0" label="首页"> <mArticle /> </el-tab-pane>
             <el-tab-pane name="1" label="文章分类"></el-tab-pane>
             <el-tab-pane name="2" label="写文章"></el-tab-pane>
-            <el-tab-pane name="3" label="定时任务补偿"></el-tab-pane>
+            <el-tab-pane name="3" label="个人中心"></el-tab-pane>
         </el-tabs>
     </div>
 </template>

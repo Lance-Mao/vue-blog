@@ -47,15 +47,6 @@ export default {
 </script>
 
 <style lang="scss">
-.fixed {
-  position: fixed;
-}
-.goTop {
-    position: fixed;
-    top: 600px;
-    right: 10px;
-}
-
 @import "../../node_modules/github-markdown-css/github-markdown.css";
 @import "../assets/components/article.scss";
 </style>

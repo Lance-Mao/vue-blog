@@ -17,7 +17,7 @@
   
   .article-wrapper {
     // width: 95%;
-    max-width: 1210px;
+    max-width: 1000px;
     margin: 4rem auto;
     padding:0 1rem;
     .title {
@@ -37,3 +37,13 @@
       font-size: 1.2rem;
     }
   }
+
+  .fixed {
+    position: fixed;
+  }
+  .goTop {
+      position: fixed;
+      top: 600px;
+      right: 10px;
+  }
+  
